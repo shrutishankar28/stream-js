@@ -14,9 +14,9 @@
     }
   },
   "browser": {
-    "request": "browser-request",
+    "request": "./src/lib/parse_request.js",
     "faye": "./node_modules/faye/browser/faye-browser.js",
-    "crypto": false
+    "crypto": "crypto-browserify"
   },
   "devDependencies": {
     "async": "~0.9.0",
