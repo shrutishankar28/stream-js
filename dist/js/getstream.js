@@ -5992,7 +5992,11 @@ StreamClient.prototype = {
             throw new errors.FeedError('Wrong feed format ' + feedId + ' correct format is flat:1');
         }
 
-        if (crypto.createHash && this.secret && !token) {
+        if (!crypto.createHash) {
+            throw new errors.FeedError('crypto is not available, are you running this on a browser?');
+        }
+
+        if (this.secret && !token) {
             // we are server side, have a secret but no feed signature
             token = signing.sign(this.secret, feedId.replace(':', ''));
         }
@@ -6082,6 +6086,7 @@ StreamClient.prototype = {
 };
 
 module.exports = StreamClient;
+
 }).call(this,_dereq_("1YiZ5S"))
 },{"./errors":26,"./feed":27,"./signing":29,"1YiZ5S":21,"crypto":4,"request":28}],26:[function(_dereq_,module,exports){
 var errors = module.exports;
