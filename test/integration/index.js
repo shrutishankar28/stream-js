@@ -34,24 +34,24 @@ describe('Stream client', function () {
   
   function beforeEachBrowser() {
   	client = stream.connect('ahj2ndz7gsan');
-  	client = stream.connect('ahj2ndz7gsan', null, 96);
-  	user1 = client.feed('user:11', 'YHEtoaiaB03gBR9px6vX4HCRVKk');
-  	aggregated2 = client.feed('aggregated:22', 'HxAmzOcePOz0vAIpyEolPl5NEfA');
-  	aggregated3 = client.feed('aggregated:33', 'YxCkg56vpnabvHPNLCHK7Se36FY');
-  	flat3 = client.feed('flat:33', 'MqPLN1eA_7l5iYrJ8zMyImkY8V0');
-  	secret3 = client.feed('secret:33', 'fo8mzeoxsa1if2te5KWJtOF-cZw');
-    notification3 = client.feed('notification:33', 'h2YC_zy7fcHQUAJc5kNhZaH9Kp0');
+  	client = stream.connect('ahj2ndz7gsan', null, 519, {'location': 'browserTestCycle'});
+  	user1 = client.feed('user', '11', 'YHEtoaiaB03gBR9px6vX4HCRVKk');
+  	aggregated2 = client.feed('aggregated', '22', 'HxAmzOcePOz0vAIpyEolPl5NEfA');
+  	aggregated3 = client.feed('aggregated', '33', 'YxCkg56vpnabvHPNLCHK7Se36FY');
+  	flat3 = client.feed('flat', '33', 'MqPLN1eA_7l5iYrJ8zMyImkY8V0');
+  	secret3 = client.feed('secret', '33', 'fo8mzeoxsa1if2te5KWJtOF-cZw');
+    notification3 = client.feed('notification', '33', 'h2YC_zy7fcHQUAJc5kNhZaH9Kp0');
   }
   
   function beforeEachNode() {
   	client = stream.connect('ahj2ndz7gsan', 'gthc2t9gh7pzq52f6cky8w4r4up9dr6rju9w3fjgmkv6cdvvav2ufe5fv7e2r9qy');
-  	client = stream.connect('ahj2ndz7gsan', 'gthc2t9gh7pzq52f6cky8w4r4up9dr6rju9w3fjgmkv6cdvvav2ufe5fv7e2r9qy', 519);
-    user1 = client.feed('user:11');
-    aggregated2 = client.feed('aggregated:22');
-    aggregated3 = client.feed('aggregated:33');
-    flat3 = client.feed('flat:33');
-    secret3 = client.feed('secret:33');
-    notification3 = client.feed('notification:33');
+  	client = stream.connect('ahj2ndz7gsan', 'gthc2t9gh7pzq52f6cky8w4r4up9dr6rju9w3fjgmkv6cdvvav2ufe5fv7e2r9qy', 519, {'location': 'testCycle'});
+    user1 = client.feed('user', '11');
+    aggregated2 = client.feed('aggregated', '22');
+    aggregated3 = client.feed('aggregated', '33');
+    flat3 = client.feed('flat', '33');
+    secret3 = client.feed('secret', '33');
+    notification3 = client.feed('notification', '33');
   }
   
   var before = (node) ? beforeEachNode : beforeEachBrowser;
@@ -62,12 +62,12 @@ describe('Stream client', function () {
   	if (!node) {
   		done();
   	}
-  	var url = 'https://thierry:pass@getstream.io/?site=1';
+  	var url = 'https://thierry:pass@getstream.io/?app_id=1';
   	process.env.STREAM_URL = url;
   	client = stream.connect();
-  	expect(client.key).to.eql('thierry');
-  	expect(client.secret).to.eql('pass');
-  	expect(client.siteId).to.eql('1');
+  	expect(client.apiKey).to.eql('thierry');
+  	expect(client.apiSecret).to.eql('pass');
+  	expect(client.appId).to.eql('1');
   	done();
   });
   
@@ -75,12 +75,12 @@ describe('Stream client', function () {
   	if (!node) {
   		done();
   	}
-  	var url = 'https://bvt88g4kvc63:twc5ywfste5bm2ngqkzs7ukxk3pn96yweghjrxcmcrarnt3j4dqj3tucbhym5wfd@getstream.io/?site=669';
+  	var url = 'https://bvt88g4kvc63:twc5ywfste5bm2ngqkzs7ukxk3pn96yweghjrxcmcrarnt3j4dqj3tucbhym5wfd@getstream.io/?app_id=669';
   	process.env.STREAM_URL = url;
   	client = stream.connect();
-  	expect(client.key).to.eql('bvt88g4kvc63');
-  	expect(client.secret).to.eql('twc5ywfste5bm2ngqkzs7ukxk3pn96yweghjrxcmcrarnt3j4dqj3tucbhym5wfd');
-  	expect(client.siteId).to.eql('669');
+  	expect(client.apiKey).to.eql('bvt88g4kvc63');
+  	expect(client.apiSecret).to.eql('twc5ywfste5bm2ngqkzs7ukxk3pn96yweghjrxcmcrarnt3j4dqj3tucbhym5wfd');
+  	expect(client.appId).to.eql('669');
   	done();
   });
   
@@ -88,12 +88,12 @@ describe('Stream client', function () {
   	if (!node) {
   		done();
   	}
-  	var url = 'https://thierry:pass@getstream.io/?site=1';
+  	var url = 'https://thierry:pass@getstream.io/?app_id=1';
   	process.env.STREAM_URL = url;
   	client = stream.connect('a','b','c');
-  	expect(client.key).to.eql('a');
-  	expect(client.secret).to.eql('b');
-  	expect(client.siteId).to.eql('c');
+  	expect(client.apiKey).to.eql('a');
+  	expect(client.apiSecret).to.eql('b');
+  	expect(client.appId).to.eql('c');
   	done();
   });
 
@@ -143,6 +143,14 @@ describe('Stream client', function () {
   
   it('get wrong feed', function (done) {
   	var getFeed = function() { client.feed('flat1');};
+    expect(getFeed).to.throwException(function (e) {
+	  	expect(e).to.be.a(errors.FeedError);
+	});
+    done();
+  });
+  
+  it('get wrong format', function (done) {
+  	var getFeed = function() { client.feed('flat:1', '2');};
     expect(getFeed).to.throwException(function (e) {
 	  	expect(e).to.be.a(errors.FeedError);
 	});
@@ -256,30 +264,35 @@ describe('Stream client', function () {
   
   it('follow', function (done) {
     var activityId = null;
+    this.timeout(6000);
   	function add() {
 		var activity = {'actor': 1, 'verb': 'add', 'object': 1};
 		user1.addActivity(activity, follow);
 	}
 	function follow(error, response, body) {
 		activityId = body['id'];
-		aggregated2.follow('user:11', check);
+		aggregated2.follow('user', '11', runCheck);
 	}
-    function check(error, response, body) {
-    	aggregated2.get({'limit': 1}, function(error, response, body) {
-    		expect(response.statusCode).to.eql(200);
-    		expect(body['results'][0]['activities'][0]['id']).to.eql(activityId);
-    		done();
-    	});
-    }
+	function runCheck(error, response, body) {
+		function check() {
+	    	aggregated2.get({'limit': 1}, function(error, response, body) {
+	    		expect(response.statusCode).to.eql(200);
+	    		expect(body['results'][0]['activities'][0]['id']).to.eql(activityId);
+	    		done();
+	    	});
+	    }
+		setTimeout(check, 1000);
+	   }
     add();
   });
   
   it('follow without callback', function (done) {
-    aggregated2.follow('user:111');
+    aggregated2.follow('user', '111');
     done();
   });
   
   it('unfollow', function (done) {
+  	this.timeout(6000);
     var activityId = null;
   	function add() {
 		var activity = {'actor': 1, 'verb': 'add', 'object': 1};
@@ -287,10 +300,10 @@ describe('Stream client', function () {
 	}
 	function follow(error, response, body) {
 		activityId = body['id'];
-		aggregated2.follow('user:11', unfollow);
+		aggregated2.follow('user', '11', unfollow);
 	}
 	function unfollow(error, response, body) {
-		aggregated2.unfollow('user:11', check);
+		aggregated2.unfollow('user', '11', check);
 	}
     function check(error, response, body) {
     	setTimeout(function() {
@@ -301,7 +314,7 @@ describe('Stream client', function () {
 	    		expect(activityFound).to.not.eql(activityId);
 	    		done();
 	    	});
-    	}, 200);
+    	}, 1000);
     }
     add();
   });
@@ -336,7 +349,7 @@ describe('Stream client', function () {
     	expect(results[0].target_id).to.eql('flat:33');
     	done();	
     }
-  	user1.follow('flat:33', doifollow);
+  	user1.follow('flat', '33', doifollow);
   });
   
   it('follow private', function (done) {
@@ -346,9 +359,9 @@ describe('Stream client', function () {
     	done();
    };
    if (node) {
-    user1.follow('secret:33', callback);
+    user1.follow('secret', '33', callback);
    } else {
-   	user1.follow('secret:33', secret3.token, callback);
+   	user1.follow('secret', '33', secret3.token, callback);
    }
   });
   
@@ -376,7 +389,13 @@ describe('Stream client', function () {
     function add3(error, response, body) {
   		activityIdTwo = body['id'];
   		var activity = {'actor': 3, 'verb': 'run', 'object': 2};
-  		user1.addActivity(activity, get);
+  		user1.addActivity(activity, function(error, response, body) {
+  			// testing eventual consistency is not easy :)
+  			function getBound() {
+  				get(error, response, body);
+  			}
+  			setTimeout(getBound, 200);
+  		});
   	}
 
   	function get(error, response, body) {
@@ -414,10 +433,10 @@ describe('Stream client', function () {
   it('mark read and seen', function (done) {
     // TODO: fully test the behaviour of mark read and seen
     function callback(error, response, body) {
-      console.log(body);
       done();
     }
-    notification3.get({limit:2, mark_seen:true, mark_seen: ['a', 'b']}, callback);
+    var params = {limit:2, mark_seen:true, mark_read: ['71ae691c-6681-11e4-8080-8001556e1292']};
+    notification3.get(params, callback);
   });
   
   it('fayeGetClient', function (done) {
@@ -442,7 +461,7 @@ describe('Stream client', function () {
   it('fayeSubscribeError', function (done) {
   	var client = stream.connect('5crf3bhfzesn');
   	function sub() {
-  		var user1 = client.feed('user:11', 'secret');
+  		var user1 = client.feed('user', '11', 'secret');
   		user1.subscribe();
   	}
     expect(sub).to.throwException(function (e) {
