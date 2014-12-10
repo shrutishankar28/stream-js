@@ -1,13 +1,13 @@
 {
   "author": {
     "name": "Thierry Schellenbach",
-    "company": "Stream INC"
+    "company": "Stream.io Inc"
   },
   "name": "getstream",
   "description": "The official low-level GetStream.io client for Node.js and the browser.",
   "main": "./src/getstream.js",
   "homepage": "https://getstream.io/",
-  "version": "2.0.4",
+  "version": "2.0.6",
   "config": {
     "blanket": {
       "pattern": "src"
