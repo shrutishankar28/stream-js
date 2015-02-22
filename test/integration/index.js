@@ -317,7 +317,7 @@ describe('Stream client', function () {
   
   it('follow', function (done) {
     var activityId = null;
-    this.timeout(6000);
+    this.timeout(9000);
   	function add() {
 		var activity = {'actor': 1, 'verb': 'add', 'object': 1};
 		user1.addActivity(activity, follow);
@@ -334,7 +334,7 @@ describe('Stream client', function () {
 	    		done();
 	    	});
 	    }
-		setTimeout(check, 1000);
+		setTimeout(check, 3000);
 	   }
     add();
   });
@@ -484,12 +484,38 @@ describe('Stream client', function () {
   });
 
   it('mark read and seen', function (done) {
-    // TODO: fully test the behaviour of mark read and seen
-    function callback(error, response, body) {
-      done();
+    // add 2 activities to ensure we have new data
+    var params = {limit: 2};
+    var activities = [
+      {'actor': 1, 'verb': 'add', 'object': 1},
+      {'actor': 2, 'verb': 'test', 'object': 2}
+    ]
+    notification3.addActivities(activities, getNotifications);
+    // lookup the notification ids
+    function getNotifications(error, response, body) {
+      notification3.get(params, markRead);
+    };
+    // mark all seen and the first read
+    function markRead(error, response, body) {
+       var notificationId = body['results'][0]['id'];
+       var params = {limit:2, mark_seen:true, mark_read: notificationId};
+       notification3.get(params, readFeed);
     }
-    var params = {limit:2, mark_seen:true, mark_read: ['71ae691c-6681-11e4-8080-8001556e1292']};
-    notification3.get(params, callback);
+    // read the feed (should be seen and 1 unread)
+    function readFeed(error, response, body) {
+      notification3.get(params, verifyState);
+    };
+    // verify the seen and 1 unread
+    function verifyState(error, response, body) {
+      expect(body['results'][0]['is_seen']).to.eql(true);
+      expect(body['results'][1]['is_seen']).to.eql(true);
+      expect(body['results'][0]['is_read']).to.eql(true);
+      expect(body['results'][1]['is_read']).to.eql(false);
+      expect(body['unread']).to.be.greaterThan(1);
+      expect(body['unseen']).to.eql(0);
+      done();
+    };
+    
   });
   
   it('fayeGetClient', function (done) {
@@ -522,5 +548,9 @@ describe('Stream client', function () {
 	});
 	done();
   });
+
+
+
+
   
 });
