@@ -2,7 +2,11 @@
 //     GetStream client library for node and the browser
 //     Author: Thierry Schellenbach
 //     BSD License
-
+if (typeof(setTimeout) == undefined) {
+ 	function setTimeout(callback, timeout) {
+ 		callback();
+ 	}
+}
 var StreamClient = require('./lib/client');
 var errors = require('./lib/errors');
 var request = require('request');

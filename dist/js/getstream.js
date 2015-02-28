@@ -19428,7 +19428,11 @@ module.exports = function(arr, obj){
 //     GetStream client library for node and the browser
 //     Author: Thierry Schellenbach
 //     BSD License
-
+if (typeof(setTimeout) == undefined) {
+ 	function setTimeout(callback, timeout) {
+ 		callback();
+ 	}
+}
 var StreamClient = _dereq_('./lib/client');
 var errors = _dereq_('./lib/errors');
 var request = _dereq_('request');
@@ -19965,6 +19969,8 @@ module.exports = StreamFeed;
  * Simple wrapper to make make parse httprequest look 
  * somewhat like request library
  */
+
+
 
 function request(options, callback) {
 	// first difference with request, qs is called params
