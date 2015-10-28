@@ -24,6 +24,15 @@
       ]
     }
   },
+  "testling": {
+    "harness": "mocha-bdd",
+    "files": "test/browser/browser.js",
+    "browsers": [
+      "ie/9..latest",
+      "chrome/latest",
+      "firefox/latest"
+    ]
+  },
   "devDependencies": {
     "async": "~0.9.0",
     "babel-core": "^5.8.25",
