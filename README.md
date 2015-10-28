@@ -5,8 +5,6 @@ stream-js
 [![Coverage Status](https://img.shields.io/coveralls/GetStream/stream-js.svg)](https://coveralls.io/r/GetStream/stream-js?branch=master)
 [![Dependencies up to date](https://david-dm.org/GetStream/stream-js.png)](https://david-dm.org/tschellenbach/stream-js)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/tschellenbach.svg)](https://saucelabs.com/u/tschellenbach)
-
 stream-js is the official JavaScript client for [Stream](https://getstream.io/), a web service for building scalable newsfeeds and activity streams.
 The full documentation is available on [GetStream.io/docs](http://getstream.io/docs/). Note that there is also a [higher level Node integration](https://github.com/getstream/stream-node) which hooks into your ORM.
 
@@ -185,14 +183,6 @@ mocha test/integration/index.js test/unit/index.js
 test/browser/test.html
 # coverage
 mocha test/cov.js -R html-cov > cov.html
-```
-
-To release a new version
-```bash
-# package.json is leading and overwrites bower.json version
-gulp bump
-# builds the browserify, tags and submits to npm
-gulp publish
 ```
 
   [Stream]: https://getstream.io/
