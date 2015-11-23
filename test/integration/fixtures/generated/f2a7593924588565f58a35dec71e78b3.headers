@@ -1,0 +1,29 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "content-type": "application/json",
+    "content-length": "408",
+    "connection": "keep-alive",
+    "allow": "GET, POST, DELETE, HEAD, OPTIONS",
+    "cache-control": "max-age=0",
+    "date": "Wed, 28 Oct 2015 16:08:58 GMT",
+    "server": "nginx/1.4.6 (Ubuntu)",
+    "vary": "Accept",
+    "x-cache": "Miss from cloudfront",
+    "via": "1.1 c013a1b33ae2677bcfa21234aa9a4276.cloudfront.net (CloudFront)",
+    "x-amz-cf-id": "3Cimyh7TqcmuOJZF9DbYpWUsXj_cMTnQ1T5IqOG4k1AmU8qrMJWRcA=="
+  },
+  "url": "https://api.getstream.io:443/api/v1.0/feed/user/11/?limit=1&api_key=ahj2ndz7gsan&location=unspecified",
+  "time": 196,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "stream-auth-type": "simple",
+      "Authorization": "user11 YHEtoaiaB03gBR9px6vX4HCRVKk",
+      "X-Stream-Client": "stream-javascript-client-node-unknown",
+      "host": "api.getstream.io",
+      "accept": "application/json",
+      "content-type": "application/json"
+    }
+  }
+}

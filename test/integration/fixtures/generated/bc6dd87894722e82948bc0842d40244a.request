@@ -1,0 +1,13 @@
+{
+  "url": "https://us-east-api.getstream.io:443/api/v1.0/feed/user/11/?limit=1&api_key=ahj2ndz7gsan&location=testCycle",
+  "method": "GET",
+  "headers": {
+    "stream-auth-type": "simple",
+    "Authorization": "user11 YHEtoaiaB03gBR9px6vX4HCRVKk",
+    "X-Stream-Client": "stream-javascript-client-node-unknown",
+    "host": "us-east-api.getstream.io",
+    "accept": "application/json",
+    "content-type": "application/json"
+  },
+  "body": ""
+}
