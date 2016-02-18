@@ -151,6 +151,13 @@ describe('Stream Client', function() {
 
   beforeEach(before);
 
+  it('should have a correct userAgent string', function() {
+    var pJson = require('../../package.json');
+    var userAgent = client.userAgent();
+
+    expect(userAgent).to.be('stream-javascript-client-' + (isNodeEnv ? 'node' : 'browser') + '-' + pJson.version);
+  });
+
   if (isNodeEnv) {
     client = stream.connect('ahj2ndz7gsan', 'gthc2t9gh7pzq52f6cky8w4r4up9dr6rju9w3fjgmkv6cdvvav2ufe5fv7e2r9qy');
 

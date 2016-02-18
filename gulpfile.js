@@ -108,7 +108,12 @@ gulp.task('build:test', function(callback) {
       alias: {
         'request': 'browser-request',
       }
-    }
+    },
+    module: {
+      loaders: [
+        { test: /\.json$/, loader: 'json-loader' },
+      ]
+    },
   }, function(err, stats) {
     if(err) throw new gutil.PluginError("webpack:build:test", err);
     gutil.log("[webpack:build:test]", stats.toString({

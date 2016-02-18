@@ -6,6 +6,7 @@ var utils = require('./utils');
 var BatchOperations = require('./batch_operations');
 var Promise = require('./promise');
 var qs = require('qs');
+var packageJson = require('../../package.json');
 
 /**
  * @callback requestCallback
@@ -188,7 +189,7 @@ StreamClient.prototype = {
      */
     var description = (this.node) ? 'node' : 'browser';
     // TODO: get the version here in a way which works in both and browserify
-    var version = 'unknown';
+    var version = packageJson.version || 'unknown';
     return 'stream-javascript-client-' + description + '-' + version;
   },
 
