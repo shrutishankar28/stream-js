@@ -735,7 +735,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Updates one activity on the getstream-io api
 	     * @since  3.1.0
 	     * @param  {object} activity The activity to update
-	     * @return {Promise}          
+	     * @return {Promise}
 	     */
 	    return this.updateActivities([activity]);
 	  }
@@ -873,7 +873,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else if(typeof options.body !== 'string' && options.body !== null)
 	      options.body = JSON.stringify(options.body)
 	  }
-	  
+
 	  //BEGIN QS Hack
 	  var serialize = function(obj) {
 	    var str = [];
@@ -883,7 +883,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    return str.join("&");
 	  }
-	  
+
 	  if(options.qs){
 	    var qs = (typeof options.qs == 'string')? options.qs : serialize(options.qs);
 	    if(options.uri.indexOf('?') !== -1){ //no get params
@@ -893,7 +893,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 	  //END QS Hack
-	  
+
 	  //BEGIN FORM Hack
 	  var multipart = function(obj) {
 	    //todo: support file type (useful?)
@@ -916,7 +916,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    result.type = 'multipart/form-data; boundary='+result.boundry;
 	    return result;
 	  }
-	  
+
 	  if(options.form){
 	    if(typeof options.form == 'string') throw('form name unsupported');
 	    if(options.method === 'POST'){
@@ -969,7 +969,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  xhr.id = req_seq + ': ' + options.method + ' ' + options.uri
 	  xhr._id = xhr.id // I know I will type "_id" from habit all the time.
 
-	  if(is_cors && !supports_cors) {
+	  if(true) {
 	    var cors_err = new Error('Browser does not support cross-origin request: ' + options.uri)
 	    cors_err.cors = 'unsupported'
 	    return options.callback(cors_err, xhr)
