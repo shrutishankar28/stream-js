@@ -1,5 +1,15 @@
 var gulp = require('gulp');
-gulp.task('build', function () {
-// your code
-// console.log('hey');
+var uglify = require('gulp-uglify');
+var pump = require('pump');
+
+// gulp.task('default', ['compile']);
+ 
+gulp.task('compress', function (cb) {
+  pump([
+        gulp.src('lib/*.js'),
+        uglify(),
+        gulp.dest('dist')
+    ],
+    cb
+  );
 });
