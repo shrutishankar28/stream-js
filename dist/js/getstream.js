@@ -969,7 +969,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  xhr.id = req_seq + ': ' + options.method + ' ' + options.uri
 	  xhr._id = xhr.id // I know I will type "_id" from habit all the time.
 
-	  if(true) {
+	  if(1 === 0) {
 	    var cors_err = new Error('Browser does not support cross-origin request: ' + options.uri)
 	    cors_err.cors = 'unsupported'
 	    return options.callback(cors_err, xhr)
